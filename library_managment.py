@@ -17,7 +17,7 @@ class Library:
             # print("Book name : ",book)
             if book == bookName:
                if book in user.borrow_book:
-                 print("\t______________________________________")
+                 print("\t__________________________________________________________")
                  print(f"\tReturn Your {book} Book First")
                  return
                if  self.book_list[book] == 0:
@@ -26,10 +26,10 @@ class Library:
                
                self.book_list[book] -= 1
                user.borrow_book.append(bookName)
-               print("\t______________________________________") 
+               print("\t_____________________________________________________________") 
                print("\tHere it is your book. Please return it on time ")
                return
-        print("\t______________________________________") 
+        print("\t_______________________________________________________________") 
         print(f'\t{bookName} is not available')
         return    
 
@@ -40,20 +40,44 @@ class Library:
                 self.book_list[book] += 1;
                 user.borrow_book.remove(book)
                 user.return_book.append(book)
-                print("\t______________________________________")
+                print("\t______________________________________________________________")
                 print("\tYour Book Received By Us. Thanks For Your Return")
                 return
-        print("\t______________________________________")
+        print("\t_________________________________________________________________")
         print(f"\tYou Have not Borrow {bookName} this book. What do you want to return ?")
-
-
-
+    
+    def show_available_books(self):
+     print("\t\t______________________________________________________________________")
+     print("\n\t\t\t\tAvailable Book List Details ")
+     print("\t\t_______________________________________________________________________")
+     print("\n\t\tBook Name :  \t\t\t\t Book Amount  : \n")
+     
+     for book in self.book_list:
+         if self.book_list[book] > 0 :
+          print(f'\t\t{book}    \t\t\t\t\t {self.book_list[book]}')
+          print("\t\t______________________________________________________________________")
+          print("\n")
+     
+     print("\n\n")
+    
+    def donate_book(self,bookName,amount):
+        for book in self.book_list:
+            if book == bookName:
+                self.book_list[book]+=amount
+                print("\t______________________________________________________________")
+                print("\tYour Book Successfully Added To The Library ")
+                return
+            
+        self.book_list[bookName] = amount
+        print("\t______________________________________________________________")
+        print("\tA New Collection Successfully Added To The Library ")
+        return    
 library = Library({'English' : 2, 'Bangla' : 7 , 'Math' : 12, 'Islamic':23 , 'ICS' : 0 })
 
 currentUser = None
-print("\t\t______________________________________")
-print("\n\t\tWelcome To e-Library Management System !")
-print("\t\t______________________________________")
+print("\t\t__________________________________________________________________________")
+print("\n\t\t\t\tWelcome To e-Library Management System !")
+print("\t\t__________________________________________________________________________")
 
 while True:
     if currentUser == None:
@@ -70,12 +94,12 @@ while True:
                 if user.roll == roll and user.password == password:
                     currentUser = user
                     find_match = True
-                    print("\t____________________________________") 
+                    print("\t______________________________________________________________") 
                     print("\t\tSuccessfully Logged In")
             
             if find_match == False:
-                print("\t\t____________________________________")
-                print("\t\tNo Data Found. Create An Account First")
+                print("\t\t___________________________________________________________")
+                print("\t\t\t\tNo Data Found. Create An Account First")
         
         else :
             name = input("Enter Your Name : ")
@@ -84,21 +108,24 @@ while True:
             find = False;
             for old in User.user_list:
                 if old.name == name and old.roll == roll :
-                    print("\t____________________________________") 
+                    print("\t__________________________________________________________") 
                     print("\t\tUser Already Exist. Please Log In ")
                     find = True 
                 
             if find == False:
                 user = User(name,roll,password)
-                print("\t____________________________________")
+                print("\t_______________________________________________________________")
                 print("\t\tSuccessfully Created Account ")
     
     else:
-        print("\n\n________________________")
+        print("\n\n_____________________________________________________________________\n\n")
         print("1. Borrow a Book")
         print("2. Return a Book")
         print("3. My Profile")
-        print("4. Account Setting")
+        # print("4. Account Setting")
+        print("5. Show Available Book")
+        print("6. Donate Your Book Book")
+        print("7. Your Borrowed Book List")
         print("0. Log Out")
         
         option = input('Select Your Option : ')
@@ -114,14 +141,24 @@ while True:
         
 
         elif option == '3' :
-            print("\t____________________________________")
+            print("\t________________________________________________________________")
             print("\t\t\tUser Details") 
-            print("\t____________________________________")
+            print("\t________________________________________________________________")
             print("User Name : ",currentUser.name)
             print("User Roll No : ",currentUser.roll)
             print("Borrow Book List : ",currentUser.borrow_book)
             print("Return Book List : ",currentUser.return_book)
         
+        elif option == '5':
+            library.show_available_books()
+        
+        elif option == '6':
+            name = input('Enter The Book Name : ')
+            amount = int(input('Enter The Book Quantity : '))
+            library.donate_book(name,amount)
 
+        elif option == '7' :
+            print("\n\t\tYour Borrowed Book List : ",currentUser.borrow_book)    
+        
         elif option == '0':
             currentUser = None
