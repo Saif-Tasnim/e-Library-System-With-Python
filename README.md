@@ -5,3 +5,8 @@
 
 # Project Demo
 live demo [Live Demo](https://drive.google.com/file/d/1DhxJUeFht3yQP43PtkwDWwQRobAJ3ZEk/view?usp=sharing)
+
+
+for better view or resolution 
+
+[visit this link](https://www.youtube.com/watch?v=xbQGk9jGNak)
