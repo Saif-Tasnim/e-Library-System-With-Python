@@ -72,6 +72,8 @@ class Library:
         print("\t______________________________________________________________")
         print("\tA New Collection Successfully Added To The Library ")
         return    
+
+
 library = Library({'English' : 2, 'Bangla' : 7 , 'Math' : 12, 'Islamic':23 , 'ICS' : 0 })
 
 currentUser = None
@@ -95,7 +97,7 @@ while True:
                     currentUser = user
                     find_match = True
                     print("\t______________________________________________________________") 
-                    print("\t\tSuccessfully Logged In")
+                    print("\n\t\tSuccessfully Logged In")
             
             if find_match == False:
                 print("\t\t___________________________________________________________")
@@ -115,7 +117,7 @@ while True:
             if find == False:
                 user = User(name,roll,password)
                 print("\t_______________________________________________________________")
-                print("\t\tSuccessfully Created Account ")
+                print("\n\t\tSuccessfully Created Account ")
     
     else:
         print("\n\n_____________________________________________________________________\n\n")
